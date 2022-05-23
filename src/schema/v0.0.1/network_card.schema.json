@@ -1,0 +1,212 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Network Card",
+    "$id": "https://github.com/bagrow/network-cards/blob/main/src/schema/v0.0.1/network_card.schema.json",
+    "description": "https://github.com/bagrow/network-cards",
+    "default": {},
+    "type": "object",
+    "examples": [
+        {
+            "overall": {
+                "Name": "ER graph 001",
+                "Kind": "Undirected, weighted",
+                "Nodes are": "",
+                "Links are": "",
+                "Link weights are": "Synthetic - U[0,10]",
+                "Considerations": ""
+            },
+            "structure": {
+                "Number of nodes": 50,
+                "Number of links": 27,
+                "Degree": [
+                    "1.1 [0, 3]",
+                    "Distributions summarized with Average [min, max]"
+                ],
+                "Clustering": 0.0,
+                "Connected": "23 components [28.0% in largest]",
+                "Component size": [
+                    "2.2 [1, 14]",
+                    "Distributions summarized with Average [min, max]"
+                ],
+                "Diameter": "N/A",
+                "Largest component's diameter": 10,
+                "Assortativity (degree)": -0.07999999999999949
+            },
+            "metainfo": {
+                "Node metadata": "",
+                "Link metadata": "",
+                "Date of creation": "",
+                "Data generating process": "",
+                "Ethics": "",
+                "Funding": "",
+                "Citation": ""
+            }
+        }
+    ],
+    "required": [
+        "overall",
+        "structure",
+        "metainfo"
+    ],
+    "properties": {
+        "schema_version": {
+            "description": "The version of the schema.",
+            "type": "string"
+        },
+        "overall": {
+            "type": "object",
+            "description": "Overall information about the network.",
+            "required": [
+                "Name",
+                "Kind",
+                "Nodes are",
+                "Links are",
+                "Considerations"
+            ],
+            "properties": {
+                "Name": {
+                    "type": "string",
+                    "description": "A written identifier for the network"
+                },
+                "Kind": {
+                    "type": "string",
+                    "description": "Is the network undirected, unweighted, etc.."
+                },
+                "Nodes are": {
+                    "type": "string",
+                    "description": "The definition of nodes."
+                },
+                "Links are": {
+                    "type": "string",
+                    "description": "The definition of links (edges)."
+                },
+                "Link weights are": {
+                    "$id": "#/properties/overall/properties/Link%20weights%20are",
+                    "type": "string",
+                    "description": "The definition of link (edge) weights."
+                },
+                "Considerations": {
+                    "type": "string",
+                    "description": "What considerations should be taken into account regarding the network's overall properties."
+                }
+            },
+            "additionalProperties": true
+        },
+        "structure": {
+            "type": "object",
+            "description": "Structural information about the network.",
+            "required": [
+                "Number of nodes",
+                "Number of links",
+                "Degree",
+                "Clustering",
+                "Connected",
+                "Assortativity (degree)"
+            ],
+            "properties": {
+                "Number of nodes": {
+                    "type": ["integer", "string"], 
+                    "description": "The number of nodes in the network."
+                },
+                "Number of links": {
+                    "type": ["integer", "string"],
+                    "description": "The number of links (edges) in the network."
+                },
+                "Degree": {
+                    "type": ["integer", "string", "array"],
+                    "description": "A summary of the degree distribution.",
+                    "additionalItems": true,
+                    "items": {
+                        "$id": "#/properties/structure/properties/Degree/items",
+                        "anyOf": [
+                            {
+                                "$id": "#/properties/structure/properties/Degree/items/anyOf/0",
+                                "type": "string",
+                                "title": "The first anyOf schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "1.1 [0, 3]",
+                                    "Distributions summarized with Average [min, max]"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "Clustering": {
+                    "type": ["number", "string"],
+                    "description": "The average clustering of the network."
+                },
+                "Connected": {
+                    "type": "string",
+                    "description": "A description and summary of the network's connectivity.",
+                    "examples": [
+                        "23 components [28.0% in largest]"
+                    ]
+                },
+                "Component size": {
+                    "type": ["string", "array"],
+                    "description": "An optional description about the sizes of the network's components.",
+                    "examples": [
+                        [
+                            "2.2 [1, 14]",
+                            "Distributions summarized with Average [min, max]"
+                        ]
+                    ]
+                },
+                "Diameter": {
+                    "type": ["integer", "string"],
+                    "description": "The diameter of the network, if connected.",
+                    "default": "N/A"
+                },
+                "Largest component's diameter": {
+                    "type": ["integer", "string"],
+                    "description": "The diameter of the largest component's induced subgraph, if network is not connected."
+                },
+                "Assortativity (degree)": {
+                    "type": ["number", "string"],
+                    "description": "The degree assortativity of the network."
+                }
+            },
+            "additionalProperties": true
+        },
+        "metainfo": {
+            "type": "object",
+            "description": "Metainformation about the network.",
+            "required": [
+            ],
+            "properties": {
+                "Node metadata": {
+                    "type": "string",
+                    "description": "A description of any metadata associated with nodes."
+                },
+                "Link metadata": {
+                    "type": "string",
+                    "description": "A description of any metadata associated with links."
+                },
+                "Date of creation": {
+                    "type": "string",
+                    "description": "A description of when the network data were gathered or created."
+                },
+                "Data generating process": {
+                    "type": "string",
+                    "description": "A description of how the network data were generated."
+                },
+                "Ethics": {
+                    "type": "string",
+                    "description": "A description of ethical considerations for the network data."
+                },
+                "Funding": {
+                    "type": "string",
+                    "description": "A description of funding related to the network data."
+                },
+                "Citation": {
+                    "type": "string",
+                    "description": "A citation associated with the network data."
+                }
+            },
+            "additionalProperties": true
+        }
+    },
+    "additionalProperties": false
+}
