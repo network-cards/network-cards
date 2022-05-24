@@ -61,7 +61,7 @@ Data generating process
 ^1: Distributions summarized with average [min, max].
 ```
 
-Unfortunately, none of the important definitions, details or meta-information are computable, so
+Unfortunately, few of the important definitions, details or meta-information are computable, so
 most of the fields outside the structure panel are blank.
 Let's use `network_cards` methods to populate the remaining fields ourselves:
 
