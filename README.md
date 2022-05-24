@@ -81,7 +81,8 @@ card.update_metainfo({
     })
 ```
 
-We use `card.update_overall` and `card.update_metainfo` to insert entries into the previous card. These can be used one at a time (like we did when updating the overall panel) or a dictionary can be passed to update multiple entries at once.
+We used `card.update_overall()` and `card.update_metainfo()` to insert entries into the previous card. 
+Entries can be used one at a time (like we did when updating the overall panel) or a dictionary can be passed to update multiple entries at once.
 
 Now, print the revised card with `print(card)`:
 
@@ -131,7 +132,7 @@ card.to_latex("karate-card.tex")
 
 If you use a Network Card, please cite our paper:
 
-James Bagrow and Yong-Yeol Ahn, Network Cards: concise, readable summaries of network data (2022)
+James Bagrow and Yong-Yeol Ahn, _Network Cards: concise, readable summaries of network data_ (2022)
 
 Here is a bibtex entry:
 
@@ -142,6 +143,21 @@ Here is a bibtex entry:
 	year   = {2022},
 }
 ```
+
+and a .ris entry:
+
+```text
+TY  - UNPB
+AU  - Bagrow, James
+AU  - Ahn, Yong-Yeol
+TI  - Network Cards: concise, readable summaries of network data
+PY  - 2022
+DA  - 2022
+ER  - 
+```
+
+- [Download .bib](citation/citation.bib)
+- [Download .ris](citation/citation.ris)
 
 ## License
 
