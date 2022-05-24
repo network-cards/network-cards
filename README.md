@@ -24,7 +24,7 @@ Network cards are intended to be _concise, readable and flexible_, allowing rese
 ## Example
 
 `Network Cards` provides [fill-in templates](templates/) but you can also generate and save a card programmatically. 
-Here's a Python script where we load a network from a file and compute the basic card: 
+Here's Python code where we load a network from a file and compute the basic card: 
 
 ```python
 import networkx as nx
@@ -61,8 +61,9 @@ Data generating process
 ^1: Distributions summarized with average [min, max].
 ```
 
-
-Now let's use `network_cards` to populate the remaining fields:
+Unfortunately, none of the important definitions, details or meta-information are computable, so
+most of the fields outside the structure panel are blank.
+Let's use `network_cards` methods to populate the remaining fields ourselves:
 
 ```python
 card.update_overall("Name", "Zachary Karate Club")
@@ -128,7 +129,19 @@ card.to_latex("karate-card.tex")
 
 ## Citation
 
+If you use a Network Card, please cite our paper:
 
+James Bagrow and Yong-Yeol Ahn, Network Cards: concise, readable summaries of network data (2022)
+
+Here is a bibtex entry:
+
+```bibtex
+@unpublished{bagrow2022cards,
+	author = {Bagrow, James and Ahn, Yong-Yeol},
+	title  = {Network Cards: concise, readable summaries of network data},
+	year   = {2022},
+}
+```
 
 ## License
 
