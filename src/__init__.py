@@ -1,4 +1,4 @@
-__all__ = ["NetworkCard", "read_json", "align_cards"]
+__all__ = ["NetworkCard", "NetworkMultiCard", "read_json"]
 
 from network_cards import NetworkCard, read_json, align_cards
 

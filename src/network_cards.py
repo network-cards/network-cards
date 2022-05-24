@@ -874,7 +874,7 @@ if __name__ == '__main__':
     NC.update_overall({"Link weights are" : "Synthetic - U[0,10]"})
     #print(NC)
 
-    
+
     #align_cards(nc,NC)
 
     #NC.to_latex("test-card.tex")

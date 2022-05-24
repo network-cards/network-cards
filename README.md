@@ -132,7 +132,7 @@ card.to_latex("karate-card.tex")
 
 If you use a Network Card, please cite our paper:
 
-James Bagrow and Yong-Yeol Ahn, _Network Cards: concise, readable summaries of network data_ (2022)
+Bagrow, J., & Ahn, Y. (2022). Network Cards: concise, readable summaries of network data
 
 Here is a bibtex entry:
 
@@ -156,8 +156,8 @@ DA  - 2022
 ER  - 
 ```
 
-- [Download .bib](citation/citation.bib)
-- [Download .ris](citation/citation.ris)
+- [Download .bib](references/citation.bib)
+- [Download .ris](references/citation.ris)
 
 ## License
 
