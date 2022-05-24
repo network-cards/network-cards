@@ -156,8 +156,8 @@ DA  - 2022
 ER  - 
 ```
 
-- [Download .bib](references/citation.bib)
-- [Download .ris](references/citation.ris)
+- [.bib file](references/citation.bib)
+- [.ris file](references/citation.ris)
 
 ## License
 
