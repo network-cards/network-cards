@@ -11,7 +11,7 @@ The first panel provides an overall summary of the network, the second summarize
 Network cards are intended to be _concise, readable and flexible_, allowing researchers across fields to quickly read and understand studies involving network datasets. 
 We believe that a standard representation is crucial to ensuring that key information associated with network data remains available.
 
-This repository provides a Python package to create and update network cards.
+This repository provides a [templates](templates/) and a [Python package](#install) to create and update network cards.
 
 ## Table of Contents
 
