@@ -135,7 +135,7 @@ If you use a Network Card, please cite our paper:
 
 Bagrow, J., & Ahn, Y. (2022). Network Cards: concise, readable summaries of network data
 
-Here is a bibtex entry:
+Here is a bibtex entry ([.bib file](references/citation.bib)):
 
 ```bibtex
 @unpublished{bagrow2022cards,
@@ -145,7 +145,7 @@ Here is a bibtex entry:
 }
 ```
 
-and a .ris entry:
+and a .ris entry ([.ris file](references/citation.ris)):
 
 ```text
 TY  - UNPB
@@ -156,9 +156,6 @@ PY  - 2022
 DA  - 2022
 ER  - 
 ```
-
-- [.bib file](references/citation.bib)
-- [.ris file](references/citation.ris)
 
 ## License
 
