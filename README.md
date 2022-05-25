@@ -119,7 +119,7 @@ card.to_latex("karate-card.tex")
 
 
 
-## INSTALL
+## Install
 
 `pip install network-cards`
 
