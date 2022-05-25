@@ -9,6 +9,7 @@ A network card is a three-panel tabular summary of a network dataset:
 The first panel provides an overall summary of the network, the second summarizes the structure of the network (size, density, connectivity), and the third panel provides additional meta-information, what metadata are associated with nodes and links, how were the data gathered, and so forth.
 
 Network cards are intended to be _concise, readable and flexible_, allowing researchers across fields to quickly read and understand studies involving network datasets. 
+We believe that a standard representation is crucial to ensuring that key information associated with network data remains available.
 
 ## Table of Contents
 

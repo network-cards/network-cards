@@ -5,6 +5,8 @@
 # Jim Bagrow
 # Last Modified: 2022-04-22
 
+__version__ = '0.99'
+
 import json
 import random
 import pprint
