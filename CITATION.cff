@@ -3,10 +3,10 @@ message: "If you use this software, please cite it as below."
 authors:
 - family-names: "Bagrow"
   given-names: "James"
-  orcid: "https://orcid.org/0000-0000-0000-0000"
+  orcid: "https://orcid.org/0000-0002-4614-0792"
 - family-names: "Ahn"
   given-names: "Yong-Yeol"
-  orcid: "https://orcid.org/0000-0000-0000-0000"
+  orcid: "https://orcid.org/0000-0002-4352-4301"
 title: "Network Cards"
 url: "https://github.com/network-cards/network-cards"
 preferred-citation:
@@ -14,9 +14,9 @@ preferred-citation:
   authors:
   - family-names: "Bagrow"
     given-names: "James"
-    orcid: "https://orcid.org/0000-0000-0000-0000"
+    orcid: "https://orcid.org/0000-0002-4614-0792"
   - family-names: "Ahn"
     given-names: "Yong-Yeol"
-    orcid: "https://orcid.org/0000-0000-0000-0000"
+    orcid: "https://orcid.org/0000-0002-4352-4301"
   title: "Network Cards: concise, readable summaries of network data"
   year: 2022
