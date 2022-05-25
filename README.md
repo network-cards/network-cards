@@ -109,6 +109,8 @@ Data generating process  Direct observation of club members during period 1970-7
                  Ethics                                                          
                 Funding                                                      None
                Citation                                            Zachary (1977)
+
+^1: Distributions summarized with average [min, max].
 ```
 
 And we can save to, for instance, a LaTeX file:
