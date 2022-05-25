@@ -64,7 +64,7 @@ Data generating process
 
 Unfortunately, few of the important definitions, details or meta-information are computable, so
 most of the fields outside the structure panel are blank.
-Let's use `network_cards` methods to populate the remaining fields ourselves:
+Let's use `update_*` methods to populate the remaining fields ourselves:
 
 ```python
 card.update_overall("Name", "Zachary Karate Club")
@@ -83,7 +83,7 @@ card.update_metainfo({
 ```
 
 We used `card.update_overall()` and `card.update_metainfo()` to insert entries into the previous card. 
-Entries can be used one at a time (like we did when updating the overall panel) or a dictionary can be passed to update multiple entries at once.
+Entries can be updated one at a time (like we did when updating the overall panel) or a dictionary can be passed to update multiple entries at once.
 
 Now, print the revised card with `print(card)`:
 
