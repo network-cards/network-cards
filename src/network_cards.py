@@ -19,13 +19,13 @@ from format_helpers import save_to_buffer, draw_frame_border, tex_escape
 
 class NetworkCard():
     """Base class for Network Cards. Network cards are semi-standardized tables
-    summarizing network data. They consist of three boxes, in order:
+    summarizing network data. They consist of three panels, in order:
 
     1. Overall Information
     2. Structural Information
     3. Metainformation
 
-    Each box contains named fields describing attributes of the network. Here
+    Each panel contains named entries describing attributes of the network. Here
     is an example Network Card (w/o footnotes):
 
                         Name  Experiment A-1
@@ -52,8 +52,6 @@ Largest component's diameter  0
                       Ethics  All participants gave informed consent
                      Funding  N/A
                     Citation  N/A
-
-    Footnotes are partially implemented.
     """
     _null_string = ""
 
