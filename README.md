@@ -15,11 +15,22 @@ This repository provides [templates](templates/) and a [Python package](#install
 
 ## Table of Contents
 
-* [Example](#example)
 * [Install](#install)
 	- [Requirements](#requirements)
+* [Example](#example)
 * [Citation](#citation)
 * [License](#License)
+
+
+## Install
+
+`pip install network-cards`
+
+#### Requirements
+
+* Python 3.8+
+* Networkx
+* Pandas
 
 
 
@@ -120,17 +131,6 @@ card.to_latex("karate-card.tex")
 card.to_excel("karate-card.xlsx")
 ```
 
-
-
-## Install
-
-`pip install network-cards`
-
-#### Requirements
-
-* Python 3.8+
-* Networkx
-* Pandas
 
 
 
