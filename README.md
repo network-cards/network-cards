@@ -113,10 +113,11 @@ Data generating process  Direct observation of club members during period 1970-7
 ^1: Distributions summarized with average [min, max].
 ```
 
-And we can save to, for instance, a LaTeX file:
+And we can save to a convenient file format:
 
 ```python
 card.to_latex("karate-card.tex")
+card.to_excel("karate-card.xlsx")
 ```
 
 
