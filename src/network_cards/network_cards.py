@@ -3,9 +3,7 @@
 
 # network_cards.py
 # Jim Bagrow
-# Last Modified: 2022-04-22
-
-__version__ = '0.99'
+# Last Modified: 2022-05-27
 
 import json
 import random
@@ -14,7 +12,7 @@ from collections import OrderedDict
 import numpy as np
 import pandas as pd
 import networkx as nx
-from format_helpers import save_to_buffer, draw_frame_border, tex_escape
+from .format_helpers import save_to_buffer, draw_frame_border, tex_escape
 
 
 class NetworkCard():
