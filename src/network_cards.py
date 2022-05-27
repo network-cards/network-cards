@@ -19,7 +19,7 @@ from format_helpers import save_to_buffer, draw_frame_border, tex_escape
 
 class NetworkCard():
     """Base class for Network Cards. Network cards are semi-standardized tables
-    summarizing network data. They consist of three panel, in order:
+    summarizing network data. They consist of three panels, in order:
 
     1. Overall Information
     2. Structural Information
@@ -52,8 +52,6 @@ Largest component's diameter  0
                       Ethics  All participants gave informed consent
                      Funding  N/A
                     Citation  N/A
-
-    Footnotes are partially implemented.
     """
     _null_string = ""
 
@@ -501,7 +499,7 @@ Largest component's diameter  0
         column_format = None
         if max_width is not None:
             column_format=f"lp{{{max_width}cm}}"
-        
+
         s[0] = s[0].apply(tex_escape)
         ltx = s.style.hide(axis=0).hide(axis=1).format(precision=4).to_latex(hrules=True, column_format=column_format).splitlines()
         ltx.pop(2) # remove midrule added by pandas to go under (hidden) column names
