@@ -13,6 +13,8 @@ We believe that a standard representation is crucial to ensuring that key inform
 
 This repository provides [templates](templates/) and a [Python package](#install) to create, update, and export network cards.
 
+Interested in more? Check out [the paper][1].
+
 ## Table of Contents
 
 * [Install](#install)
@@ -136,7 +138,7 @@ card.to_excel("karate-card.xlsx")
 
 ## Citation
 
-If you use a Network Card, please cite our paper:
+If you use a Network Card, please cite [our paper][1]:
 
 Bagrow, J., & Ahn, Y. (2022). Network Cards: concise, readable summaries of network data
 
@@ -166,3 +168,5 @@ ER  -
 
 [BSD-3-Clause](LICENSE) © James Bagrow
 
+
+[1]: https://bagrow.com/#pub73 "Network Cards: concise, readable summaries of network data"
