@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "network-cards"
-version = "0.99.1"
+version = "0.99.1.1"
 description = "Concise, readable summaries of network data"
 authors = ["James Bagrow"]
 readme = "README.md"
