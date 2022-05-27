@@ -19,13 +19,13 @@ from format_helpers import save_to_buffer, draw_frame_border, tex_escape
 
 class NetworkCard():
     """Base class for Network Cards. Network cards are semi-standardized tables
-    summarizing network data. They consist of three boxes, in order:
+    summarizing network data. They consist of three panel, in order:
 
     1. Overall Information
     2. Structural Information
     3. Metainformation
 
-    Each box contains named fields describing attributes of the network. Here
+    Each panel contains named fields describing attributes of the network. Here
     is an example Network Card (w/o footnotes):
 
                         Name  Experiment A-1
@@ -64,7 +64,7 @@ Largest component's diameter  0
         self.D_overall = {}
         self.D_structr = {}
         self.D_metainf = {}
-        self._box_names = ["Overall", "Structure", "Metainformation"]
+        self._panel_names = ["Overall", "Structure", "Metainformation"]
 
         if initialize:
             self.update_overall(self.label_name())
@@ -98,7 +98,7 @@ Largest component's diameter  0
         return {label: func(self.graph)}
 
     def label_name(self, unnamed=""):
-        """Get entry for network's name. Intended for card's overall box.
+        """Get entry for network's name. Intended for card's overall panel.
 
         Network's name is inferred from networkx graph.name attribute. Use
         `unnamed` (default: "") if no name given.
@@ -111,13 +111,13 @@ Largest component's diameter  0
 
     def label_nodes(self):
         """Get entry for network's number of nodes. Intended for card's
-        structure box.
+        structure panel.
         """
         return self._str_labeler("Number of nodes", nx.number_of_nodes)
 
     def label_connected(self):
         """Get entries describing whether network is connected. Intended for
-        card's structure box.
+        card's structure panel.
 
         For undirected networks:
             If connected, report the network's diameter. If not connected,
@@ -144,7 +144,7 @@ Largest component's diameter  0
              f"{ncc} components [{max(sizes)/len(self.graph):.2%} in largest]"
              }
         d.update(self.summarize_distribution(sizes, label='Component size'))
-        d['Diameter'] = "n/a"#self._null_string
+        d['Diameter'] = "n/a" # self._null_string
         d["Largest component's diameter"] = nx.diameter(self.graph.subgraph(comps[0]))
         return d
 
@@ -158,7 +158,7 @@ Largest component's diameter  0
 
     def label_links(self):
         """Get entry for network's number of links. Intended for card's
-        structure box.
+        structure panel.
         """
         nsl = nx.number_of_selfloops(self.graph)
         if nsl > 0:
@@ -168,8 +168,8 @@ Largest component's diameter  0
 
     def label_bidirectional_links(self):
         """Get entry for network's proportion (%) of bidirectional link.
-        Intended for card's structure box. Intended for directed networks.
-        
+        Intended for card's structure panel. Intended for directed networks.
+
         A bidirectional link is one where both (i,j) and (j,i) links exist.
         """
         num_directed_links = self.graph.number_of_edges()
@@ -180,7 +180,7 @@ Largest component's diameter  0
 
     def label_degree(self):
         """Get entry summarizing network's degree distribution. Intended for
-        card's structure box.
+        card's structure panel.
 
         If undirected, report summary of network's degree distribution.
 
@@ -209,14 +209,14 @@ Largest component's diameter  0
 
     def label_assort(self):
         """Get entry for network's degree assortativity. Intended for card's
-        structure box.
+        structure panel.
         """
         return self._str_labeler("Assortativity (degree)",
                                  nx.degree_assortativity_coefficient)
 
     def label_clustering(self):
         """Get entry for network's average clustering. Intended for card's
-        structure box.
+        structure panel.
         """
         try:
             return self._str_labeler("Clustering", nx.average_clustering)
@@ -249,10 +249,10 @@ Largest component's diameter  0
         return {"Kind": ", ".join(sorted(attributes)).capitalize()}
 
     def update_overall(self, data, value=None):
-        """Insert or replace entries in the network card's 'overall' box.
+        """Insert or replace entries in the network card's 'overall' panel.
         Entries can be passed as {field:entry} dicts, or as field, entry
         argument pair. Example:
-        
+
         >>> nc = NetworkCard(graph)
         >>> nc.update_overall({"Nodes are": "Platform users"})
         >>> nc.update_overall("Nodes are", "Platform users")
@@ -262,7 +262,7 @@ Largest component's diameter  0
         self._update(data, self.D_overall)
 
     def update_structure(self,data, value=None):
-        """Insert or replace entries in the network card's 'structure' box.
+        """Insert or replace entries in the network card's 'structure' panel.
         See update_overall for details.
         """
         if value:
@@ -270,7 +270,7 @@ Largest component's diameter  0
         self._update(data, self.D_structr)
 
     def update_metainfo(self,data, value=None):
-        """Insert or replace entries in the network card's 'metainfo' box.
+        """Insert or replace entries in the network card's 'metainfo' panel.
         See update_overall for details.
         """
         if value:
@@ -284,19 +284,19 @@ Largest component's diameter  0
         self._sizes()
 
     def remove_overall(self, field):
-        """Remove a field from network card's overall info box. No change if
+        """Remove a field from network card's overall info panel. No change if
         field is not present.
         """
         self._remove(field, self.D_overall)
 
     def remove_structure(self, field):
-        """Remove a field from network card's structure box. No change if field
+        """Remove a field from network card's structure panel. No change if field
         is not present.
         """
         self._remove(field, self.D_structr)
 
     def remove_metainfo(self, field):
-        """Remove a field from network card's metainfo box. No change if field
+        """Remove a field from network card's metainfo panel. No change if field
         is not present.
         """
         self._remove(field, self.D_metainf)
@@ -307,9 +307,10 @@ Largest component's diameter  0
         self._sizes()
 
     def add_footnote(self, field, note):
-        """Add footnote to field. This will use the first box containing
-        `field`. If you want to control the box manually, use
-        `add_footnote_BOX` instead, where BOX in [overall, structure, metainfo].
+        """Add footnote to field. This will use the first panel containing
+        `field`. If you want to control the panel manually, use
+        `add_footnote_PANEL` instead, where PANEL in [overall, structure,
+        metainfo].
         """
         if field in self.D_overall:
             self.add_footnote_overall(field, note)
@@ -318,26 +319,26 @@ Largest component's diameter  0
         elif field in self.D_metainf:
             self.add_footnote_metainfo(field, note)
         else:
-            raise KeyError(f"Field '{field}' not found in any box.")
-        
+            raise KeyError(f"Field '{field}' not found in any panel.")
+
     def add_footnote_overall(self, field, note):
-        """Add footnote to `field`'s entry in the overall box.
+        """Add footnote to `field`'s entry in the overall panel.
         Raise KeyError if field not present.
         """
         self._add_footnote(field, note, self.D_overall)
- 
+
     def add_footnote_structure(self, field, note):
-        """Add footnote to `field`'s entry in the structure box.
+        """Add footnote to `field`'s entry in the structure panel.
         Raise KeyError if field not present.
         """
         self._add_footnote(field, note, self.D_structr)
-    
+
     def add_footnote_metainfo(self, field, note):
-        """Add footnote to `field`'s entry in the metainformation box.
+        """Add footnote to `field`'s entry in the metainformation panel.
         Raise KeyError if field not present.
         """
         self._add_footnote(field, note, self.D_metainf)
-    
+
     def _add_footnote(self, field, note, dest):
         """Add footnote to `field`'s entry in `dest`."""
         try:
@@ -350,7 +351,7 @@ Largest component's diameter  0
             dest[field] = tuple(entry)
         except KeyError as e:
             raise KeyError(f"Field {field} not found in specified dict {dest}", e) from e
-        
+
     def __repr__(self):
         s = self._series()
 
@@ -429,33 +430,33 @@ Largest component's diameter  0
         """Clear all entries from network card while retaining the fields
         themselves. Useful for creating a blank card template.
         """
-        boxes = [self.D_overall, self.D_structr, self.D_metainf]
-        for box in boxes:
-            for field in box:
-                entry = box[field]
+        panels = [self.D_overall, self.D_structr, self.D_metainf]
+        for panel in panels:
+            for field in panel:
+                entry = panel[field]
                 if keep_notes and isinstance(entry, (tuple,list)):
                     entry = list(entry)
                     entry[0] = value
-                    box[field] = entry
+                    panel[field] = entry
                 else:
-                    box[field] = value
-       
+                    panel[field] = value
+
     def to_frame(self):
         """Convert Network Card to Pandas DataFrame.
 
-        Format is one row per entry with columns Box, Field, Value, and Note.
+        Format is one row per entry with columns Panel, Field, Value, and Note.
         Note is empty string if Value has no footnote.
         """
         L = []
-        boxes = [self.D_overall, self.D_structr, self.D_metainf]
-        for n,d in zip(self._box_names, boxes):
+        panels = [self.D_overall, self.D_structr, self.D_metainf]
+        for n,d in zip(self._panel_names, panels):
             for fl,va in d.items():
                 if isinstance(va, (tuple,list)):
                     ft = va[1:]
                     va = va[0]
                 else:
                     va, ft = va, ""
-                L.append({'Box':n, "Field":fl, "Value":va, "Note":ft})
+                L.append({'Panel':n, "Field":fl, "Value":va, "Note":ft})
         return pd.DataFrame(L)
 
     def _sizes(self):
@@ -469,7 +470,7 @@ Largest component's diameter  0
     def to_latex(self, buf=None, max_width=None):
         """Save Network Card to LaTeX format. Write to `buf` (or return as string
         if buf is None).
-        
+
         max_width: width in cm for the right column.
         """
         s = self._series()
@@ -504,8 +505,8 @@ Largest component's diameter  0
         s[0] = s[0].apply(tex_escape)
         ltx = s.style.hide(axis=0).hide(axis=1).format(precision=4).to_latex(hrules=True, column_format=column_format).splitlines()
         ltx.pop(2) # remove midrule added by pandas to go under (hidden) column names
-        ltx.insert(self._n_ov_st_   +2, r'\midrule') # separator before metainfo box
-        ltx.insert(self._n_ov_      +2, r'\midrule') # separator before structure box
+        ltx.insert(self._n_ov_st_   +2, r'\midrule') # separator before metainfo panel
+        ltx.insert(self._n_ov_      +2, r'\midrule') # separator before structure panel
         ltx.append(r"% footnotes require tablefootnote package (put \usepackage{tablefootnote} in preamble)")
         return save_to_buffer("\n".join(ltx), buf)
 
@@ -561,7 +562,7 @@ Largest component's diameter  0
 
     def to_dict(self):
         """Convert network card to dictionary of dictionaries, one dictionary
-        per box.
+        per panel.
         """
         obj = {'overall'   : self.D_overall,
                'structure' : self.D_structr,
@@ -571,7 +572,7 @@ Largest component's diameter  0
 
     def to_json(self, buf=None):
         """Save network card to dictionary of dictionaries, one dictionary per
-        box.  Write to `buf` (or return as string if buf is None).
+        panel.  Write to `buf` (or return as string if buf is None).
         """
         return save_to_buffer( json.dumps(self.to_dict()), buf )
 
@@ -587,7 +588,7 @@ class NetworkMultiCard():
         """Combine cards into a Network MultiCard.
         """
         self.num_networks = len(cards)
-        self.D = pd.DataFrame(columns=['Box', 'Field'])
+        self.D = pd.DataFrame(columns=['Panel', 'Field'])
         for i,card in enumerate(cards):
             this_D = card.to_frame()
             this_D.rename(columns={'Value': f'Value_{i}', 'Note': f"Note_{i}"},
@@ -595,31 +596,31 @@ class NetworkMultiCard():
             self._merge_onto(this_D)
         self._merge_all_notes()
 
-        # ensure all boxes are in right order:
-        D_ov = self.D[self.D['Box'] == 'Overall']
-        D_st = self.D[self.D['Box'] == 'Structure']
-        D_mi = self.D[self.D['Box'] == 'Metainformation']
+        # ensure all panels are in right order:
+        D_ov = self.D[self.D['Panel'] == 'Overall']
+        D_st = self.D[self.D['Panel'] == 'Structure']
+        D_mi = self.D[self.D['Panel'] == 'Metainformation']
         self.D = pd.concat( [D_ov, D_st, D_mi]).reset_index(drop=True)
 
     def _merge_onto(self, frame):
         """Merge frame into the multicard.
         """
-        self.D = pd.merge(self.D, frame, how='outer', on=["Box", "Field"])
+        self.D = pd.merge(self.D, frame, how='outer', on=["Panel", "Field"])
 
     def _merge_all_notes(self):
         """Take every separate card's footnote column and merge into a single note column."""
-        notes_cols =  [c for c in self.D if c.startswith('Note_')]
+        notes_cols = [c for c in self.D if c.startswith('Note_')]
         new_notes = []
         for _, row in self.D[notes_cols].fillna("").iterrows():
             new_notes.append( set(self._flatten(row.tolist())) -{""} )
-        
+
         self.D["Note"] = new_notes
         self.D.drop(notes_cols, axis=1, inplace=True)
 
     def _flatten(self, items, seqtypes=(list, tuple)):
         try:
             for i, x in enumerate(items):
-                while isinstance(x, seqtypes):    
+                while isinstance(x, seqtypes):
                     items[i:i+1] = x
                     x = items[i]
         except IndexError:
@@ -627,9 +628,9 @@ class NetworkMultiCard():
         return items
 
     def __repr__(self):
-        show_frame = self.D.drop("Box", axis=1).fillna(self._null_string)
+        show_frame = self.D.drop("Panel", axis=1).fillna(self._null_string)
 
-         # clean up footnotes:
+        # clean up footnotes:
         fields = list(show_frame['Field'])
         list_notes = list(show_frame['Note'])
         new_fields = []
@@ -662,17 +663,17 @@ class NetworkMultiCard():
         when you want to manually reorder the fields using the swap_two_rows
         method.
         """
-        for box in ['Overall', "Structure", "Metainformation"]:
+        for panel in ['Overall', "Structure", "Metainformation"]:
             if verbose:
-                print(f"{box}:")
-            print(self.D[self.D['Box']==box]['Field'].to_string(name=False, dtype=False))
+                print(f"{panel}:")
+            print(self.D[self.D['Panel']==panel]['Field'].to_string(name=False, dtype=False))
             if verbose:
                 print("")
-    
+
     def get_index(self):
         """List of row numbers for the multicard."""
         return self.D.index.tolist()
-    
+
     def swap_two_rows(self, pos1, pos2):
         """Interchange rows at pos1 and pos2 in the multicard. Use show_fields()
         to see row positions to use.
@@ -680,7 +681,7 @@ class NetworkMultiCard():
         idx = self.get_index()
         idx[pos2], idx[pos1] = idx[pos1], idx[pos2]
         self.D = self.D.reindex(index=idx).reset_index(drop=True)
-        
+
     def to_latex(self, buf=None, col_width=2.5):
         """Save MultiCard to LaTeX format. Write to `buf` (or return as string
         if buf is None).
@@ -690,7 +691,7 @@ class NetworkMultiCard():
         Use inside a .tex document with \\include{FILENAME} inside table
         environment.
         """
-        show_frame = self.D.drop("Box", axis=1).fillna(self._null_string)        
+        show_frame = self.D.drop("Panel", axis=1).fillna(self._null_string)
         fields = list(show_frame['Field'])
         list_notes = list(show_frame["Note"])
         new_fields = []
@@ -712,24 +713,24 @@ class NetworkMultiCard():
             new_fields.append(f + marks)
         show_frame['Field'] = new_fields
         show_frame.drop('Note', axis=1, inplace=True)
-        
+
         for c in show_frame.columns:
             if c.startswith("Value"):
                 show_frame[c] = show_frame[c].apply(tex_escape)
-        
-        nov = len(self.D[self.D['Box']=='Overall'])
-        nst = len(self.D[self.D['Box']=='Structure'])
-        
+
+        nov = len(self.D[self.D['Panel']=='Overall'])
+        nst = len(self.D[self.D['Panel']=='Structure'])
+
         cf = "l" + rf">{{\raggedright\arraybackslash}}p{{{col_width}cm}}"*(len(show_frame.columns)-1)
         ltx = show_frame.style.hide(axis=0).hide(axis=1).format(precision=4).to_latex(hrules=True, column_format=cf).splitlines()
-        
+
         ltx.pop(2) # remove midrule added by pandas to go under (hidden) column names
-        ltx.insert(nov+nst+2, r'\midrule') # separator before metainfo box
-        ltx.insert(nov    +2, r'\midrule') # separator before structure box
+        ltx.insert(nov+nst+2, r'\midrule') # separator before metainfo panel
+        ltx.insert(nov    +2, r'\midrule') # separator before structure panel
         ltx.append(r"% footnotes require tablefootnote package (put \usepackage{tablefootnote} in preamble)")
         ltx.append(r"% put \usepackage{array} in preamble")
         return save_to_buffer("\n".join(ltx), buf)
-    
+
     def to_excel(self, filename, formatted=True):
         """Save MultiCard to Excel (xlsx) format."""
         s = self.D.copy()
@@ -757,16 +758,16 @@ class NetworkMultiCard():
         notes = [{'Field':f"{num}: {n}"} for n, num in n2num.items()]
         s['Field'] = new_fields
         s = pd.concat([s, pd.DataFrame(notes)])
-        s.drop(['Box','Note'], axis=1, inplace=True)
+        s.drop(['Panel','Note'], axis=1, inplace=True)
 
         writer = pd.ExcelWriter(filename, engine='xlsxwriter')
         s.to_excel(writer, sheet_name='Sheet1', float_format='%.3g',
                    header=False, index=False)
 
         if formatted:
-            nov = len(self.D[self.D['Box']=='Overall'])
-            nst = len(self.D[self.D['Box']=='Structure'])
-            nmi = len(self.D[self.D['Box']=='Metainformation'])
+            nov = len(self.D[self.D['Panel']=='Overall'])
+            nst = len(self.D[self.D['Panel']=='Structure'])
+            nmi = len(self.D[self.D['Panel']=='Metainformation'])
 
             workbook = writer.book
             worksheet = writer.sheets['Sheet1']
@@ -814,7 +815,7 @@ def _align_dicts_ordered(D1, D2, value=""):
         except ValueError:
             idx2 = None
         print(k, idx1, idx2)
-        
+
         if idx1 is None:
             idx = 2*idx2
         elif idx2 is None:
@@ -828,7 +829,7 @@ def _align_dicts_ordered(D1, D2, value=""):
     #print([k for i,k in L])
     L = [k for i,k in L]
     print("***")
-        
+
     D1_new, D2_new = {}, {}
     for k in L:
         try:
