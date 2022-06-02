@@ -169,4 +169,4 @@ ER  -
 [BSD-3-Clause](LICENSE) © James Bagrow
 
 
-[1]: https://bagrow.com/#pub73 "Network Cards: concise, readable summaries of network data"
+[1]: https://arxiv.org/abs/2206.00026 "Network Cards: concise, readable summaries of network data"

@@ -20,3 +20,13 @@ preferred-citation:
     orcid: "https://orcid.org/0000-0002-4352-4301"
   title: "Network Cards: concise, readable summaries of network data"
   year: 2022
+  url: https://arxiv.org/abs/2206.00026
+  identifiers:
+    - type: other
+      value: "arXiv:2206.00026"
+      description: The ArXiv preprint of the paper
+    - type: doi
+      value: 10.48550/arXiv.2206.00026
+      description: The ArXiv preprint of the paper
+      
+  
