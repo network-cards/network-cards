@@ -9,7 +9,7 @@ import sys
 import os
 import json
 
-SCHEMA_FILE = "schema/v0.0.1/network_card.schema.json"
+SCHEMA_FILE = "schema/v0.0.2/network_card.schema.json"
 
 D = json.load(open(SCHEMA_FILE))
 
