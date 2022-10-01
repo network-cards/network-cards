@@ -3,7 +3,7 @@
 
 # network_cards.py
 # Jim Bagrow
-# Last Modified: 2022-05-27
+# Last Modified: 2022-09-27
 
 import json
 import random
@@ -50,6 +50,7 @@ Largest component's diameter  0
                       Ethics  All participants gave informed consent
                      Funding  N/A
                     Citation  N/A
+                      Access  https://example.org/data
     """
     _null_string = ""
 
@@ -87,6 +88,7 @@ Largest component's diameter  0
             self.update_metainfo("Ethics")
             self.update_metainfo("Funding")
             self.update_metainfo("Citation")
+            self.update_metainfo("Access")
 
         self._sizes()
 
@@ -159,7 +161,8 @@ Largest component's diameter  0
         nsl = nx.number_of_selfloops(self.graph)
         if nsl > 0:
             m = nx.number_of_edges(self.graph)
-            return {'Number of links': f"{m} ({nsl} self-loops)"}
+            lbl = 'self-loop' if nsl == 1 else 'self-loops'
+            return {'Number of links': f"{m} ({nsl} {lbl})"}
         return self._str_labeler("Number of links", nx.number_of_edges)
 
     def label_bidirectional_links(self):
