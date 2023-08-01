@@ -3,7 +3,7 @@
 A network card is a three-panel tabular summary of a network dataset:
 
 <p align='center'>
-<img src='network-card-example.png' alt='Example network card for the Zachary Karate Club' width='600'>
+<img src='https://raw.githubusercontent.com/network-cards/network-cards/main/network-card-example.png' alt='Example network card for the Zachary Karate Club' width='600'>
 </p>
 
 The first panel provides an overall summary of the network, the second summarizes the structure of the network (size, density, connectivity), and the third panel provides additional meta-information, what metadata are associated with nodes and links, how were the data gathered, and so forth.
